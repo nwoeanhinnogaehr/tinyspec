@@ -2,7 +2,7 @@ A tiny frequency domain synthesizer for linux.
 
 Try:
 ```
-$ ./play hacks/example.h
+$ ./play hacks/brokenconvo.h
 ```
 
 For full list of examples, see the `hacks` directory. `example.h` has been well commented as a starting point for further exploration.
