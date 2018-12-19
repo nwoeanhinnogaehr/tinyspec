@@ -7,7 +7,9 @@ using namespace std;
 typedef complex<double> cplx;
 const int rate = 44100;
 
-#include".hack.h" // user code
+#define XSTR(x) #x
+#define STR(x) XSTR(x)
+#include STR(HACK)
 
 // FFT author: Zachary Friggstad
 void ifft(cplx *in, cplx *v, int n) {
