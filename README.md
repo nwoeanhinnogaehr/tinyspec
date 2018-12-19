@@ -1,8 +1,10 @@
-A tiny spectral (aka frequency domain) bytebeat synthesizer that will run on anything.
+A tiny frequency domain synthesizer for linux.
 
-On linux, try:
+Try:
 ```
-$ make play
+$ ./play example.h
 ```
 
-If your `aplay` is not working, you might want to pipe the output of `tinyspec` to something else instead. The samples are mono 44100Hz 32-bit floats.
+For full list of examples, see the `hacks` directory. `example.h` has been well commented as a starting point for further exploration.
+
+If your `aplay` is not working, you might want edit the play script to send the output somewhere else instead. The samples are mono 44100Hz 32-bit floats.
