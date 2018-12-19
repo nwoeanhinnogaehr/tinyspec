@@ -31,17 +31,20 @@ void ifft(cplx *in, cplx *v, int n) {
     }
 }
 
-cplx fft_out[fft_size], fft_in[fft_size];
-float abuf[fft_size/2], atmp[fft_size/2];
+cplx fft_out[2*fft_size], fft_in[2*fft_size];
+float abuf[fft_size], atmp[fft_size];
 int main() {
     init();
-    for(double t = 0;; t += fft_size/(double)rate/4) {
+    for (double t = 0;; t += fft_size/(double)rate/4) {
         memset(fft_in, 0, sizeof fft_in);
-        fill(fft_in, fft_size/2, t);
-        ifft(fft_in, fft_out, fft_size);
-        for (int i = 0; i < fft_size/4; i++) {
-            abuf[i] = (fft_out[i].real()*(i/(fft_size/4.0)) + atmp[i+fft_size/4]);
-            atmp[i+fft_size/4] = fft_out[i+fft_size/4].real()*(1.0-(i)/(fft_size/4.0));
+        cplx* fft_buf[2] = {fft_in, fft_in+fft_size};
+        fill(fft_buf, fft_size/2, t);
+        for (int c = 0; c < 2; c++) {
+            ifft(fft_in+c*fft_size, fft_out+c*fft_size, fft_size);
+            for (int i = 0; i < fft_size/4; i++) {
+                abuf[i*2+c] = (fft_out[i+c*fft_size].real()*(i/(fft_size/4.0))+atmp[i*2+c+fft_size/4]);
+                atmp[i*2+c+fft_size/4] = fft_out[i+c*fft_size+fft_size/4].real()*(1.0-(i)/(fft_size/4.0));
+            }
         }
         write(1, abuf, (sizeof abuf)/2);
     }
