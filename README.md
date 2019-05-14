@@ -1,5 +1,7 @@
 A tiny frequency domain synthesizer for linux.
 
+Check out [tinyspec-cling](https://github.com/nwoeanhinnogaehr/tinyspec-cling) for a slightly more heavyweight version with livecoding support!
+
 Try:
 ```
 $ ./play hacks/brokenconvo.h
