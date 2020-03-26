@@ -3,5 +3,5 @@ set -e
 
 [[ $1 == "" ]] && echo "Specify a hack to play. For example:" && echo "$ ./play hacks/example.h" && exit
 # clang is not required, but it does a much better job at optimizing
-clang++ -DHACK=$1 -lm -O2 -Wall -Wextra -Wno-bitwise-op-parentheses tinyspec.cpp -o tinyspec
-./tinyspec | aplay -c2 -f FLOAT_LE -r 44100
+clang++ -std=c++11 -stdlib=libc++ -DHACK=$1 -lm -O2 -Wall -Wextra -Wno-bitwise-op-parentheses tinyspec.cpp -o tinyspec
+./tinyspec | aplay  -c2 -f FLOAT_LE -r 44100
